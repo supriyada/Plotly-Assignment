@@ -30,22 +30,28 @@ function optionChanged(element) {
         console.log(demographValues);
         var demoGraphFiltered = demographValues.filter(subjectInfo => subjectInfo.id === parseInt(chosenSubject));
         console.log(demoGraphFiltered);
+        
         var id = demoGraphFiltered[0].id;
-        console.log(id);
-        var ethnicity = demoGraphFiltered[0].ethnicity;
-        console.log(ethnicity);
-        var gender = demoGraphFiltered[0].gender;
-        console.log(gender);
-        var age = demoGraphFiltered[0].age;
-        console.log(age);
-        var location = demoGraphFiltered[0].location;
-        console.log(location);
-        var bbtype = demoGraphFiltered[0].bbtype;
-        console.log(bbtype);
-        var wfreq = demoGraphFiltered[0].wfreq;
-        console.log(wfreq);
         demoSelect.append(`Subject ID: ${id}\n`);
-        demoSelect.append(`Ethnicity: ${ethnicity}`);
+        
+        var ethnicity = demoGraphFiltered[0].ethnicity;
+        demoSelect.append(`Ethnicity: ${ethnicity}\n`);
+        
+        var gender = demoGraphFiltered[0].gender;
+        demoSelect.append(`gender: ${gender}\n`);
+        
+        var age = demoGraphFiltered[0].age;
+        demoSelect.append(`age: ${age}\n`);
+        
+        var location = demoGraphFiltered[0].location;
+        demoSelect.append(`location: ${location}\n`);
+        
+        var bbtype = demoGraphFiltered[0].bbtype;
+        demoSelect.append(`bbtype: ${bbtype}\n`);
+        
+        var wfreq = demoGraphFiltered[0].wfreq;
+        demoSelect.append(`wfreq: ${wfreq}\n`);      
+        
         //Chart data
         var sampleValues = data.samples;
         var filteredSample = sampleValues.filter(subjectDetail => subjectDetail.id === chosenSubject);
