@@ -21,7 +21,11 @@ function unpack(rows, index) {
   }
 
 var demoSelect = d3.select("#sample-metadata").node();
+var bubbleSelect = d3.select("#bubble").node()
+var lineBreak = document.createElement('br')
+
 function optionChanged(element) {
+    //demoSelect.html("");
     var chosenSubject = element;
     console.log(chosenSubject);
     d3.json("./data/samples.json").then(function(data){
@@ -32,7 +36,7 @@ function optionChanged(element) {
         console.log(demoGraphFiltered);
         
         var id = demoGraphFiltered[0].id;
-        demoSelect.append(`Subject ID: ${id}\n`);
+        demoSelect.append("Subject ID:"+id+"\n");
         
         var ethnicity = demoGraphFiltered[0].ethnicity;
         demoSelect.append(`Ethnicity: ${ethnicity}\n`);
@@ -50,7 +54,7 @@ function optionChanged(element) {
         demoSelect.append(`bbtype: ${bbtype}\n`);
         
         var wfreq = demoGraphFiltered[0].wfreq;
-        demoSelect.append(`wfreq: ${wfreq}\n`);      
+        demoSelect.append(`wfreq: ${wfreq}`);      
         
         //Chart data
         var sampleValues = data.samples;
@@ -68,9 +72,9 @@ function optionChanged(element) {
         console.log(tenOtuLabels);
         var otuSamples = filteredSample[0].sample_values;
         var tenOtuSamples = otuSamples.slice(0, 10);
-        //var reversed_sample = tenOtuSamples.reverse();
         console.log(tenOtuSamples)
 
+        //Bar chart 
         var trace1 = {
             x: tenOtuSamples.reverse(),
             y: tenOtuIdArray.reverse(),
@@ -83,7 +87,7 @@ function optionChanged(element) {
             orientation: "h"
         };
 
-        var data = [trace1];
+        var data1 = [trace1];
 
         var layout = {title: `Top 10 OTU on subject id:${chosenSubject}`,
                     font: {size: 12},
@@ -91,7 +95,28 @@ function optionChanged(element) {
                     yaxis: {title:"OTU ID"}
                     }
 
-        Plotly.newPlot("bar", data, layout);
+        Plotly.newPlot("bar", data1, layout);
+
+        //Bubble chart
+        var trace2 = {
+            x: otuId,
+            y: otuSamples,
+            text: otuLabels,
+            mode: 'markers',
+            marker: {
+              color: otuId,
+              size: otuSamples
+            }
+          };
+
+          var data2 = [trace2];
+
+          var layout1 = {
+            title: 'Marker Size and Color',
+            showlegend: false,
+        };
+          
+          Plotly.newPlot('bubble', data2, layout1);
     });
 }
 
