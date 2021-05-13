@@ -157,18 +157,58 @@ function optionChanged(element) {
             values: [81 / 9, 81 / 9, 81 / 9, 81 / 9, 81 / 9, 81 / 9, 81 / 9, 81 / 9, 81 / 9, 81],
             text: ['0-1', '1-2', '2-3', '3-4', '4-5', '5-6', '6-7', '7-8', '8-9'],
             direction: 'clockwise',
-            textinfo: 'text',
+            //textinfo: 'text',
             textposition: 'inside',
             marker: {
                 colors: ['#0d0887', '#46039f', '#7201a8', '#9c179e', '#bd3786', '#d8576b', '#ed7953', '#fb9f3a', '#fdca26', 'white'],
-                labels: ['0-1', '1-2', '2-3', '3-4', '4-5', '5-6', '6-7', '7-8', '8-9'],
-                hoverinfo: 'label'
+                labels: ['0-1', '1-2', '2-3', '3-4', '4-5', '5-6', '6-7', '7-8', '8-9']
+                //hoverinfo: 'label'
             }
         }
-        var degrees = 80, radius = .5
-        var radians = degrees * Math.PI / 180
-        var x = -1 * radius * Math.cos(radians) * wfreq
-        var y = radius * Math.sin(radians)
+        switch(wfreq){
+            
+            
+            case 1:
+                x = 0.25;
+                y = 0.55;    
+                break;
+            case 2:
+                x = 0.25;
+                y = 0.65;
+                break;
+            case 3:
+                x = 0.35;
+                y = 0.71;
+                break;
+            case 4:
+                x = 0.40;
+                y = 0.75;
+                break;
+            case 5:
+                x = 0.5;
+                y = 0.78;
+                break;
+            case 6:
+                x = 0.60;
+                y = 0.80;
+                break;
+            case 7:
+                x = 0.68;
+                y = 0.72;
+                break;
+            case 8:
+                x = 0.75;
+                y = 0.55;
+                break;
+            case 9:
+                x = 0.75;
+                y = 0.65;    
+                break;
+            default:
+                x = 0.25;
+                y = 0.5;
+                break;
+        }
 
 
         var layoutA = {
@@ -183,7 +223,7 @@ function optionChanged(element) {
                     width: 4
                 }
             }],
-            title: 'Washing frequency',
+            title: 'Washing frequency\nScrubs per week',
             xaxis: { visible: false, range: [-1, 1] },
             yaxis: { visible: false, range: [-1, 1] }
         };
