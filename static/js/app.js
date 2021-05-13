@@ -21,11 +21,11 @@ function unpack(rows, index) {
   }
 
 var demoSelect = d3.select("#sample-metadata").node();
-var bubbleSelect = d3.select("#bubble").node()
-var lineBreak = document.createElement('br')
 
 function optionChanged(element) {
-    //demoSelect.html("");
+    console.log(demoSelect)
+    console.log("value: "+demoSelect.value);
+    document.getElementById("sample-metadata").innerHTML = "";
     var chosenSubject = element;
     console.log(chosenSubject);
     d3.json("./data/samples.json").then(function(data){
@@ -112,7 +112,7 @@ function optionChanged(element) {
           var data2 = [trace2];
 
           var layout1 = {
-            title: 'Marker Size and Color',
+            title: 'Individual sample info',
             showlegend: false,
         };
           
