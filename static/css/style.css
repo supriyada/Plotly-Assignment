@@ -1,14 +1,102 @@
 #bar{
-    margin-left: 0px;
-    width: 100%;
+    margin-left: 10px;
+    width: 95%;
+    height: 400px;
+   margin-bottom: 20px;
+   margin-top: 20px;
    
+   margin-right: 60px;
+}
+#gauge{
+    margin-left: 10px;
+    width: 95%;
+    height: 400px;
+   margin-bottom: 20px;
+   margin-top: 20px;
+   margin-right: 60px;
+}
+#bubble{
+    margin-left: 10px;
+    width: 95%;
+    height: 400px;
+   margin-bottom: 20px;
+   margin-top: 20px;
+   margin-right: 60px;
+}
+#pie{
+    margin-left: 10px;
+    width: 95%;
+    height: 400px;
+   margin-bottom: 20px;
+   margin-top: 20px;
+   
+   margin-right: 60px;
 }
 
 #sample-metadata {
     white-space: pre-wrap;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-style: oblique;
+    font-weight: 600;
   }
 
+  #charts{
+      background-color: sienna;
+  }
   
+.container{
+    background-color: bisque;
+    border:burlywood solid;
+    background-image:url("/Images/bacteria.jpg");
+    background-blend-mode:lighten;
+}
+.striped-border { 
+    border: 1px dashed #000;
+    width: 100%; 
+    margin: auto;
+    background-color:rgb(12, 12, 12);
+    opacity: 0.5; }
+
+.well{
+    margin-top: 20px;
+    background-color: burlywood;
+    font-weight: bolder;
+    font-size: 20px;
+    border:sienna 2px dashed;
+}
+h5{
+    font-weight: bold;
+    
+}
+
+.col-md-12{
+    background-color: rgb(245, 203, 151);
+    
+    margin-top: 10px;
+    background-image:url("/Images/bacteria.jpg");
+    background-size: 375px 250px;
+    background-blend-mode:lighten;
+}
+
+h2{
+    font-size: 30px;
+    
+}
+.panel-title{
+    font-weight: bold;
+}
+.panel > .panel-heading {
+    background-image: none;
+    background-color:burlywood;
+    color:black;
+    border:sienna 2px dashed;
+}
+  
+.panel{
+    background-color:burlywood;
+    border:sienna 2px dashed;
+}
     
 #selDataset:before,:after {
     content: '';
@@ -37,6 +125,4 @@
     top: 55%;
   }
 
-  #gauge{
-      background-color: aquamarine;
-  }
+  

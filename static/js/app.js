@@ -14,12 +14,6 @@ d3.json("./data/samples.json").then(function (data) {
 
 });
 
-function unpack(rows, index) {
-    return rows.map(function (row) {
-        return row[index];
-    });
-}
-
 var demoSelect = d3.select("#sample-metadata").node();
 
 function optionChanged(element) {
@@ -85,6 +79,7 @@ function optionChanged(element) {
                 font_size: 16,
                 font_color: "white"
             },
+            
             type: "bar",
             orientation: "h"
         };
@@ -93,9 +88,21 @@ function optionChanged(element) {
 
         var layout = {
             title: `Top 10 OTU on subject id:${chosenSubject}`,
+            
             font: { size: 12 },
-            xaxis: { title: "Sample values" },
-            yaxis: { title: "OTU ID" }
+            
+            xaxis: {title: "Sample values",
+                    linecolor: 'black',
+                    linewidth: 2,
+                    mirror: true },
+            yaxis: {title: "OTU ID",
+                    linecolor: 'black',
+                    linewidth: 2,
+                    mirror: true },
+                    
+            paper_bgcolor: "burlywood",
+            plot_bgcolor: 'bisque'
+            
         }
 
         Plotly.newPlot("bar", data1, layout);
@@ -117,6 +124,8 @@ function optionChanged(element) {
         var layout1 = {
             title: 'Individual sample info',
             showlegend: false,
+            paper_bgcolor: "burlywood",
+            plot_bgcolor: 'bisque'
         };
 
         Plotly.newPlot('bubble', data2, layout1);
@@ -160,7 +169,7 @@ function optionChanged(element) {
             textinfo: 'text',
             textposition: 'inside',
             marker: {
-                colors: ['rgb(241, 236, 236)', 'rgb(230, 209, 203)', 'rgb(221, 182, 170)', 'rgb(213, 156, 137)', 'rgb(205, 129, 103)', 'rgb(196, 102, 73)', 'rgb(186, 74, 47)', 'rgb(172, 44, 36)', 'rgb(149, 19, 39)','white']
+                colors: ['rgb(241, 236, 236)', 'rgb(230, 209, 203)', 'rgb(221, 182, 170)', 'rgb(213, 156, 137)', 'rgb(205, 129, 103)', 'rgb(196, 102, 73)', 'rgb(186, 74, 47)', 'rgb(172, 44, 36)', 'rgb(149, 19, 39)','burlywood']
                 //labels: ['0-1', '1-2', '2-3', '3-4', '4-5', '5-6', '6-7', '7-8', '8-9']
                 //hoverinfo: 'label'
             }
@@ -238,7 +247,9 @@ function optionChanged(element) {
                     'xref': 'paper',
                     'yref': 'paper'
                 }
-           ]
+           ],
+           paper_bgcolor: "burlywood",
+            plot_bgcolor: 'bisque'
         };
 
 
