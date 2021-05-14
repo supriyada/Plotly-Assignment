@@ -53,8 +53,21 @@ d3.json("./data/samples.json").then(function (data) {
     })
     console.log(tenOtuId);
     var otuLabels = filteredSample[0].otu_labels;
+
+    var formattedLabel = []
+    otuLabels.forEach(function (l){
+        formattedLabel.push(l.split(";").join("<br />"))
+    })
+
     var tenOtuLabels = otuLabels.slice(0, 10);
     console.log(tenOtuLabels);
+
+    var formattedTenLabel = []
+    tenOtuLabels.forEach(function (l){
+        formattedTenLabel.push(l.split(";").join("<br />"))
+    })
+    
+    console.log(formattedLabel)
     var otuSamples = filteredSample[0].sample_values;
     var tenOtuSamples = otuSamples.slice(0, 10);
     console.log(tenOtuSamples)
@@ -63,7 +76,7 @@ d3.json("./data/samples.json").then(function (data) {
     var trace1 = {
         x: tenOtuSamples.reverse(),
         y: tenOtuIdArray.reverse(),
-        text: tenOtuLabels.reverse(),
+        text: formattedTenLabel.reverse(),
         marker: { color: 'rgba(38, 24, 74, 0.8)' },
         hoverlabel: {
             bgcolor: 'rgba(164, 163, 204, 0.85)',
@@ -114,7 +127,7 @@ d3.json("./data/samples.json").then(function (data) {
     var trace2 = {
         x: otuId,
         y: otuSamples,
-        text: otuLabels,
+        text: formattedLabel,
         mode: 'markers',
         marker: {
             color: otuId,
@@ -254,20 +267,34 @@ function optionChanged(element) {
         })
         console.log(tenOtuId);
         var otuLabels = filteredSample[0].otu_labels;
+
+        var formattedLabel = []
+        otuLabels.forEach(function (l) {
+            formattedLabel.push(l.split(";").join("<br />"))
+        })
+
         var tenOtuLabels = otuLabels.slice(0, 10);
+        console.log(tenOtuLabels);
+
+        var formattedTenLabel = []
+        tenOtuLabels.forEach(function (l) {
+            formattedTenLabel.push(l.split(";").join("<br />"))
+        })
+        
         console.log(tenOtuLabels);
         var otuSamples = filteredSample[0].sample_values;
         var tenOtuSamples = otuSamples.slice(0, 10);
         console.log(tenOtuSamples)
+
         var bar_chart = d3.selectAll("#bar").node();
-        Plotly.restyle(bar_chart, "x", [x]);
-        Plotly.restyle(bar_chart, "y", [y]);
+        //Plotly.restyle(bar_chart, "x", [x]);
+        //Plotly.restyle(bar_chart, "y", [y]);
 
         //Bar chart 
-        /*var trace1 = {
+        var trace1 = {
             x: tenOtuSamples.reverse(),
             y: tenOtuIdArray.reverse(),
-            text: tenOtuLabels.reverse(),
+            text: formattedTenLabel.reverse(),
             marker: { color: 'rgba(38, 24, 74, 0.8)' },
             hoverlabel: {
                 bgcolor: 'rgba(164, 163, 204, 0.85)',
@@ -314,13 +341,13 @@ function optionChanged(element) {
     
         }
 
-        Plotly.newPlot("bar", data1, layout1);*/
+        Plotly.newPlot("bar", data1, layout1);
 
         //Bubble chart
         var trace2 = {
             x: otuId,
             y: otuSamples,
-            text: otuLabels,
+            text: formattedLabel,
             mode: 'markers',
             marker: {
                 color: otuId,
