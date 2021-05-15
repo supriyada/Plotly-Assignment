@@ -54,7 +54,7 @@
 .container{
     background-color: bisque;
     border:burlywood solid;
-    background-image:url("/Images/bacteria.jpg");
+    background-image:url("./Images/bacteria.jpg");
     background-blend-mode:lighten;
 }
 .striped-border { 
@@ -81,7 +81,7 @@ h5{
     background-color: rgb(245, 203, 151);
     
     margin-top: 10px;
-    background-image:url("/Images/bacteria.jpg");
+    background-image:url("./Images/bacteria.jpg");
     background-size: 375px 250px;
     background-blend-mode:lighten;
 }
