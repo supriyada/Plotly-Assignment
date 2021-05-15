@@ -104,32 +104,3 @@ h2{
     background-color:burlywood;
     border:sienna 2px dashed;
 }
-    
-/*#selDataset:before,:after {
-    content: '';
-    display: block;
-    position: absolute;
-    pointer-events: none; 
-
-    
-    border: 1px solid transparent; 
-    width: 0;
-    height: 0;
-    right: 16px;
-  }
-
- 
-  #selDataset::before {
-    bottom: 55%;
-    border-width: 0 6.5px 8px 6.5px;
-    border-bottom-color:aliceblue;
-  }
-
-  
-  #selDataset::after {
-    border-width: 8px 6.5px 0 6.5px;
-    border-top-color:aliceblue;
-    top: 55%;
-  }
-
-*/  
