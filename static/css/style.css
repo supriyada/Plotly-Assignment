@@ -26,14 +26,14 @@
 #pie{
     margin-left: 0px;
     width: 90%;
-    height: 500px;
+    height: 550px;
    margin-bottom: 20px;
    margin-top: 10px;
    
    margin-right: 0px;
 }
-#pie .col-md-12{
-    height: 500px;
+#pie .col-md-11{
+    height: 550px;
 }
 
 #sample-metadata {

@@ -18,11 +18,9 @@ d3.json("./data/samples.json").then(function (data) {
 
     document.getElementById("sample-metadata").innerHTML = "";
     var demographValues = data.metadata;
-    console.log(demographValues);
-    
+        
+    // Group by count of subjects on particular washing frequency
     var washFreq = demographValues.map(wf => wf.wfreq);
-    console.log(`Washing freq ${washFreq}`)
-
     pie_array = [];
     var total = 0;
     for(var i = 0; i< 10; i++ ){
@@ -31,15 +29,12 @@ d3.json("./data/samples.json").then(function (data) {
         console.log(`Washing freq ${i}: ${one.length}`)
         pie_array.push(one.length);
     }
-    
     var not_defined = demographValues.length - total 
-    console.log(not_defined)
     pie_array.push(not_defined)
-    console.log(pie_array);
-
+    
+    // Collecting demographics information
     var demoGraphFiltered = demographValues.filter(subjectInfo => subjectInfo.id === 940);
-    console.log(demoGraphFiltered);
-
+    
     var id = demoGraphFiltered[0].id;
     demoSelect.append("Subject ID:" + id + "\n");
 
@@ -61,9 +56,9 @@ d3.json("./data/samples.json").then(function (data) {
     var wfreq = demoGraphFiltered[0].wfreq;
     demoSelect.append(`Wfreq: ${wfreq}`);
 
+    //Filtering OTU ID and sample values for bar/bubble/guage chart
     var sampleValues = data.samples;
     var filteredSample = sampleValues.filter(subjectDetail => subjectDetail.id === "940");
-    console.log(filteredSample);
     var otuId = filteredSample[0].otu_ids;
     var tenOtuId = otuId.slice(0, 10);
     tenOtuIdArray = []
@@ -144,6 +139,7 @@ d3.json("./data/samples.json").then(function (data) {
 
     Plotly.newPlot("bar", data1, layout1);
 
+    //Bubble chart
     var trace2 = {
         x: otuId,
         y: otuSamples,
@@ -216,7 +212,6 @@ d3.json("./data/samples.json").then(function (data) {
         'shapes': [
             {
                 'type': 'path',
-                //'path': 'M 0.47 0.5 L 0.5 0.75 L 0.53 0.5 Z',
                 'path': `M 0.47 0.5 L 0.25 0.65 L 0.53 0.5 Z`,
                 'fillcolor': "black",
                 'line': {
@@ -240,7 +235,20 @@ d3.json("./data/samples.json").then(function (data) {
         type :"pie",
         values: pie_array,
         labels: ["0","1","2","3","4","5","6","7","8","9","No data"],
-        insidetextorientation: "horizontal"
+        marker: {
+            //colors: ['#CDDC39', '#673AB7', '#F44336', '#00BCD4', '#607D8B'],
+            line: {
+              color: 'black',
+              width: 3
+            }
+        },
+        textinfo: "label+percent",
+        text: pie_array.map(function(v){
+            return `subject count: ${v}`
+        }),
+        hoverinfo: "text",
+        pull: [0, 0, 0.3, 0, 0,0,0,0,0,0,0],
+        
     }
     var data3 = [trace3];
     var layout3 = {
@@ -257,6 +265,9 @@ d3.json("./data/samples.json").then(function (data) {
 
     Plotly.newPlot("pie",data3,layout3)
 });
+
+
+
 
 }
 
@@ -340,6 +351,18 @@ function optionChanged(element) {
         Plotly.restyle(bubble_chart,"y",[otuSamples]);
         Plotly.restyle(bubble_chart,"text",[formattedLabel]);
 
+        var pieChart = d3.selectAll("#pie").node();
+        var newExplode = [];
+        for (var i = 0; i < 11; i++) {
+            if (i === wfreq) {
+                newExplode.push(0.3)
+            }
+            else {
+                newExplode.push(0)
+            }
+        }
+        console.log(newExplode)
+        Plotly.restyle(pieChart, "pull", [newExplode]);
 /*  
 
         //Bar chart 
